@@ -1,6 +1,5 @@
 package com.basic.springboot.web;
 
-import com.basic.springboot.domain.User;
 import com.basic.springboot.web.response.AccountsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.basic.springboot.service.AccountsService;
 import com.basic.springboot.web.request.AccountPostRequest;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +27,9 @@ public class AccountsController {
 	
 	@GetMapping
 	@ResponseBody
-	public void getAccounts() {
+	public void getAccounts(HttpSession session) {
+		session.setAttribute("userId","12345");
+		session.getAttribute("userId");
 		accountsService.getAccounts();
 	}
 
