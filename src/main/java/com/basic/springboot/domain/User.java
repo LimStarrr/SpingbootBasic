@@ -1,6 +1,7 @@
 package com.basic.springboot.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,10 +31,10 @@ public class User {
 	
 	@CreatedDate
 	@Column(name="created_at")
-	LocalDate createdAt;
+	LocalDateTime createdAt;
 	
 	@PrePersist
 	private void prePersist() {
-		createdAt = LocalDate.now();
+		createdAt = LocalDateTime.now();
 	}
 }
