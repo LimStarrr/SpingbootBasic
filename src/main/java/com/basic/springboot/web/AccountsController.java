@@ -1,6 +1,7 @@
 package com.basic.springboot.web;
 
 import com.basic.springboot.web.response.AccountsResponse;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +9,7 @@ import com.basic.springboot.service.AccountsService;
 import com.basic.springboot.web.request.AccountPostRequest;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,8 @@ public class AccountsController {
 			accountsResponses.add(AccountsResponse.valueOf(user));
 		});
 
-		return accountsResponses;
+        System.out.println("getAllAccounts forEach end : " + LocalDateTime.now());
+
+        return accountsResponses;
 	}
 }

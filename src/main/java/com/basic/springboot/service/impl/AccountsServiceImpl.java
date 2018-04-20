@@ -14,10 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class AccountServiceImpl implements AccountsService {
+public class AccountsServiceImpl implements AccountsService {
 
 	@Autowired
 	AccountRepository accountRepository;
@@ -38,14 +39,20 @@ public class AccountServiceImpl implements AccountsService {
 		try {
 			accountRepository.save(user);
 		} catch(IllegalArgumentException e ) {
-			throw new CustomException(HttpStatus.NO_CONTENT);
+            throw new CustomException(HttpStatus.NO_CONTENT);
 		}
 	}
 
 	@Override
 	public List<User> getAllAccounts() {
 		// TODO Auto-generated method stub
+		System.out.println("getAllAccounts start : " + LocalDateTime.now());
 		List<User> users = accountRepository.findAll();
+
+		if(users.size() <= 0 || users == null)
+		    throw new CustomException(HttpStatus.NO_CONTENT);
+
+		System.out.println("getAllAccounts end : " + LocalDateTime.now());
 
 		return users;
 //		restTemplate.getForObject()
@@ -57,6 +64,7 @@ public class AccountServiceImpl implements AccountsService {
 	public void getAccounts() {
 
 	}
+
 
 
 }
