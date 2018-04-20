@@ -1,6 +1,7 @@
 package com.basic.springboot.web;
 
 import com.basic.springboot.web.response.AccountsResponse;
+import io.swagger.annotations.ApiOperation;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +21,15 @@ public class AccountsController {
 	
 	@Autowired
 	AccountsService accountsService;
-	
+
+	@ApiOperation(value = "postAccounts")
 	@PostMapping
 	@ResponseBody
 	public void postAccounts(@RequestBody AccountPostRequest request) {
 		accountsService.postAccounts(request);
 	}
-	
+
+	@ApiOperation(value = "getAccounts")
 	@GetMapping
 	@ResponseBody
 	public void getAccounts(HttpSession session) {
@@ -35,6 +38,7 @@ public class AccountsController {
 		accountsService.getAccounts();
 	}
 
+	@ApiOperation(value = "getAllAccounts")
 	@GetMapping("/all")
 	@ResponseBody
 	public List<AccountsResponse> getAllAccounts() {
