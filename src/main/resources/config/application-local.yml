@@ -19,5 +19,7 @@ spring:
     username: sa
     password:
 
+  thymeleaf:
+    cache: false
     
     
