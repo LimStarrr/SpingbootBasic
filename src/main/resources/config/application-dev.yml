@@ -16,5 +16,3 @@ spring:
 
   thymeleaf:
     cache: false
-
-    

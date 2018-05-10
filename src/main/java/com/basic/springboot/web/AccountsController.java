@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.basic.springboot.service.AccountsService;
 import com.basic.springboot.web.request.AccountPostRequest;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
@@ -22,7 +23,7 @@ public class AccountsController {
 	@Autowired
 	AccountsService accountsService;
 
-	@ApiOperation(value = "postAccounts")
+//	@ApiOperation(value = "postAccounts")
 	@PostMapping
 	@ResponseBody
 	public void postAccounts(@RequestBody AccountPostRequest request) {
@@ -32,13 +33,13 @@ public class AccountsController {
 	@ApiOperation(value = "getAccounts")
 	@GetMapping
 	@ResponseBody
-	public void getAccounts(HttpSession session) {
+	public void getAccounts(@ApiIgnore HttpSession session) {
 		session.setAttribute("userId","12345");
 		session.getAttribute("userId");
 		accountsService.getAccounts();
 	}
 
-	@ApiOperation(value = "getAllAccounts")
+//	@ApiOperation(value = "getAllAccounts")
 	@GetMapping("/all")
 	@ResponseBody
 	public List<AccountsResponse> getAllAccounts() {

@@ -30,7 +30,9 @@ import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger.web.UiConfigurationBuilder;
 //import springfox.petstore.controller.PetController;
 
+import java.net.URI;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
 import static com.google.common.collect.Lists.*;
@@ -39,39 +41,42 @@ import static springfox.documentation.schema.AlternateTypeRules.*;
 @Configuration
 public class SwaggerConfiguration {
     @Bean
-    public Docket petApi() {
+    public Docket swaggerApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
                 .pathMapping("/")
-                .directModelSubstitute(LocalDate.class,
-                        String.class)
-                .genericModelSubstitutes(ResponseEntity.class)
-                .alternateTypeRules(
-                        newRule(typeResolver.resolve(DeferredResult.class,
-                                typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
-                                typeResolver.resolve(WildcardType.class)))
-                .useDefaultResponseMessages(false)
-                .globalResponseMessage(RequestMethod.GET,
-                        newArrayList(new ResponseMessageBuilder()
-                                .code(500)
-                                .message("500 message")
-                                .responseModel(new ModelRef("Error"))
-                                .build()))
+//                .directModelSubstitute(LocalDate.class,
+//                        String.class)
+//                .genericModelSubstitutes(ResponseEntity.class)
+//                .alternateTypeRules(
+////                        newRule(typeResolver.resolve(DeferredResult.class,
+////                                typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
+////                                typeResolver.resolve(WildcardType.class))
+//                        newRule(typeResolver.resolve(Collection.class, URI.class),
+//                                typeResolver.resolve(Collection.class, String.class))
+//                        )
+//                .useDefaultResponseMessages(false)
+//                .globalResponseMessage(RequestMethod.GET,
+//                        newArrayList(new ResponseMessageBuilder()
+//                                .code(500)
+//                                .message("500 message")
+//                                .responseModel(new ModelRef("Error"))
+//                                .build()))
                 .securitySchemes(newArrayList(apiKey()))
                 .securityContexts(newArrayList(securityContext()))
-                .enableUrlTemplating(true)
-                .globalOperationParameters(
-                        newArrayList(new ParameterBuilder()
-                                .name("someGlobalParameter")
-                                .description("Description of someGlobalParameter")
-                                .modelRef(new ModelRef("string"))
-                                .parameterType("query")
-                                .required(true)
-                                .build()))
-                .tags(new Tag("Pet Service", "All apis relating to pets"))
+//                .enableUrlTemplating(true)
+//                .globalOperationParameters(
+//                        newArrayList(new ParameterBuilder()
+//                                .name("someGlobalParameter")
+//                                .description("Description of someGlobalParameter")
+//                                .modelRef(new ModelRef("string"))
+//                                .parameterType("query")
+//                                .required(true)
+//                                .build()))
+//                .tags(new Tag("Pet Service", "All apis relating to pets"))
 //                .additionalModels(typeResolver.resolve(AdditionalModel.class))
                 ;
     }

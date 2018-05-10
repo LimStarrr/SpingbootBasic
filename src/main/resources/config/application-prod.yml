@@ -1,0 +1,18 @@
+server:
+  port: 80
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    database: mysql
+    
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://honeypooldevdatabase.cmygllnwwue9.ap-northeast-1.rds.amazonaws.com:3306/camping?useUnicode=true&characterEncoding=UTF8&useSSL=false
+    username: honeypool
+    password: juns0609
+
+  thymeleaf:
+    cache: false
